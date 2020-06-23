@@ -20,10 +20,5 @@ deployed to [Coveralls](https://coveralls.io/r/jing-q-xu/cpp_dev_skeleton).
 ```
 git clone --recursive https://github.com/jing-q-xu/cpp_dev_skeleton.git
 cd cpp_dev_skeleton
-mkdir build
-cd build
-cmake ..
-make -j
-cd ..
-./run_test
+./build_ut.sh
 ```
