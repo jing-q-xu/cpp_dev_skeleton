@@ -31,12 +31,8 @@ macro(add_unit_test TESTNAME)
     # message("CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
     # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
     # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
-    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-        target_link_libraries(${TESTNAME} PRIVATE gcov)
-        target_compile_options(${TESTNAME} PUBLIC $<$<CXX_COMPILER_ID:GNU>:--coverage>)
-    endif ()
 
-    target_link_libraries(${TESTNAME} PRIVATE gtest gtest_main mockcpp pthread)
+    target_link_libraries(${TESTNAME} PRIVATE gtest pthread)
     gtest_discover_tests(${TESTNAME}
         # set a working directory so your project root so that you can find test data via paths relative to the project root
         # EXTRA_ARGS "--gtest_output=xml:testresults.xml"
@@ -45,15 +41,6 @@ macro(add_unit_test TESTNAME)
     )
     set_target_properties(${TESTNAME} PROPERTIES FOLDER tests)
 
-    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-        if((PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME) OR ENABLE_COVRAGE)
-            include(${REPO_ROOT}/cmake/CodeCoverage.cmake)
-            #SETUP_TARGET_FOR_COVERAGE_GCOVR_XML(
-            SETUP_TARGET_FOR_COVERAGE_LCOV(
-                NAME "${TESTNAME}"
-                EXECUTABLE ctest
-            )
-        endif()
-    endif ()
+
     
 endmacro()

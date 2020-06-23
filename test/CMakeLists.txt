@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(unit_test)
+message("PROJECT_SOURCE_DIR" ${PROJECT_SOURCE_DIR})
 
+set(GOOGLETEST_ROOT ${PROJECT_SOURCE_DIR}/../external/googletest/googletest CACHE STRING "Google Test source root")
+include(${PROJECT_SOURCE_DIR}/../cmake/GTest.cmake)
+#build_gtest()
 enable_testing()
 add_subdirectory(local_warehouse)
 add_subdirectory(order)

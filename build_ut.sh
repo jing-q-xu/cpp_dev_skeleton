@@ -5,7 +5,7 @@ rm -rf build
 rm -rf coverage
 mkdir coverage
 
-cmake -Bbuild -DBUILD_UT=ON -DCMAKE_BUILD_TYPE=Debug
+cmake -Bbuild -DBUILD_UT=ON -DCMAKE_BUILD_TYPE=Debug -DGTEST_ROOT=./external/googletest/googletest
 cd build
 make install
 # cd ..
